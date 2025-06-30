@@ -53,15 +53,16 @@ const store = MongoStore.create({
 
 const sessionOption = {
   store,
-  secret: process.env.secret,
+  secret: process.env.SECRET,
   resave: false,
-  saveUninitialized: true,
-  cookie:{
-      expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 7 * 24 * 60 * 60 * 1000,  // 1 week
+    httpOnly: true,
+    secure: true,                    // Only if using HTTPS!
   },
 };
+
 
 // app.get("/",(req,res)=>{
 //    res.send("api is working");
