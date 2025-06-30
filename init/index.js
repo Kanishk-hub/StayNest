@@ -1,10 +1,8 @@
-require("dotenv").config(); 
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../model/listing.js");
 
-const ATLAS_URL = "mongodb+srv://kanishkvalorant100:Kanishk%40%23123@cluster0.pt0ph1b.mongodb.net/bnb?retryWrites=true&w=majority&appName=Cluster0";
-
+const MONGO_URL = "mongodb://localhost:27017/bnb";
 
 main()
   .then(() => {
@@ -13,13 +11,14 @@ main()
   .catch((err) => {
     console.log(err);
   });
-  async function main() {
-    await mongoose.connect(ATLAS_URL);
+
+async function main() {
+  await mongoose.connect(MONGO_URL);
 }
 
 const initDB = async () => {
   await Listing.deleteMany({});
-  initData.data = initData.data.map((obj)=> ({...obj , owner:"68627ed8934c38f468a4a1e6"}));
+  initData.data = initData.data.map((obj)=> ({...obj , owner:"68613acd687cc7bc6c74e962"}));
   await Listing.insertMany(initData.data);
   console.log("data was initialized");
 };
