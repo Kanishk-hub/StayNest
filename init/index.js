@@ -1,8 +1,10 @@
+require("dotenv").config(); 
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../model/listing.js");
 
-const MONGO_URL = "mongodb://localhost:27017/bnb";
+const ATLAS_URL = "mongodb+srv://kanishkvalorant100:Kanishk%40%23123@cluster0.pt0ph1b.mongodb.net/bnb?retryWrites=true&w=majority&appName=Cluster0";
+
 
 main()
   .then(() => {
@@ -11,9 +13,8 @@ main()
   .catch((err) => {
     console.log(err);
   });
-
-async function main() {
-  await mongoose.connect(MONGO_URL);
+  async function main() {
+    await mongoose.connect(ATLAS_URL);
 }
 
 const initDB = async () => {
